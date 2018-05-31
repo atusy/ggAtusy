@@ -4,7 +4,7 @@
 \name{StatErr}
 \alias{StatErr}
 \title{StatErr}
-\format{An object of class \code{StatErr} (inherits from \code{Stat}, \code{ggproto}) of length 3.}
+\format{An object of class \code{StatErr} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 3.}
 \usage{
 StatErr
 }
