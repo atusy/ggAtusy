@@ -12,7 +12,7 @@ function_hl <- function(nm, stat) {
 #' @param geom geom_* functions (e.g., geom_point)
 #' @return ggproto object
 ggproto_hl <- function(geom) {
-  stat <- ggplot2:::find_subclass("Stat", formals(geom)$stat, parent.frame())
+  stat <- ggplot2:::check_subclass(formals(geom)$stat, "Stat", env = parent.frame())
   ggplot2::ggproto(
     paste0(class(stat)[1], 'HL'),
     stat,
@@ -38,7 +38,7 @@ function_ll <- function(nm, stat, LL) {
 #' @inheritParams ggproto_hl
 #' @return ggproto object
 ggproto_ll <- function(geom, LL) {
-  stat <- ggplot2:::find_subclass("Stat", formals(geom)$stat, parent.frame())
+  stat <- ggplot2:::check_subclass(formals(geom)$stat, "Stat", env = parent.frame())
   ggplot2::ggproto(
     paste0(class(stat)[1], 'HL'),
     stat,
