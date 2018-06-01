@@ -2,13 +2,6 @@
 #'
 #' @importFrom ggplot2 ggproto
 #' @importFrom purrr pmap
-#' @param nm name of method in the ggproto object to extract
-#' @param stat ggproto object of class Stat to inherit from
-#' @return function
-function_hl <- function(nm, stat) {
-  function(data, ...) stat[[nm]](data = data[data$highlight, ], ...)
-}
-#' Return highlighted version of ggproto object a stat of geom_.
 #' @param geom geom_* functions (e.g., geom_point)
 #' @return ggproto object
 ggproto_hl <- function(geom) {
@@ -16,25 +9,12 @@ ggproto_hl <- function(geom) {
   ggplot2::ggproto(
     paste0(class(stat)[1], 'HL'),
     stat,
-    compute_group = function_hl('compute_group', stat),
-    compute_layer = function_hl('compute_layer', stat),
-    compute_panel = function_hl('compute_panel', stat),
+    finish_layer = function(data, ...) stat$finish_layer(data = data[data$highlight, ], ...),
     required_aes = c(stat$required_aes, 'highlight')
   )
 }
-#' wrapper function to extract method from existing Stat and assign data to be lowlighted
-#' @inheritParams function_hl
-#' @param LL list of aethentics of lowlight objects (e.g., list(colour = NA))
-#' @return function
-function_ll <- function(nm, stat, LL) {
-  function(data, ...) {
-    data <- data[!data$highlight, ]
-    data[names(LL)] <- LL
-    stat[[nm]](data = data, ...)
-  }
-}
 #' Return lowlighted version of ggproto object a stat of geom_.
-#' @inheritParams function_ll
+#' @param LL aethentics for lowlights specified by list (e.g., list(colour = 'gray', alpha = '0.5'))
 #' @inheritParams ggproto_hl
 #' @return ggproto object
 ggproto_ll <- function(geom, LL) {
@@ -42,9 +22,15 @@ ggproto_ll <- function(geom, LL) {
   ggplot2::ggproto(
     paste0(class(stat)[1], 'HL'),
     stat,
-    compute_group = function_ll('compute_group', stat, LL),
-    compute_layer = function_ll('compute_layer', stat, LL),
-    compute_panel = function_ll('compute_panel', stat, LL),
+    finish_layer = function(data, ...) {
+      data_ll <- data[!data$highlight, ]
+      data_ll[names(LL)] <-
+        as.data.frame(
+          c(LL, .n = list(numeric(sum(!data$highlight)))),
+          stringsAsFactors = FALSE
+        )[names(LL)]
+      stat$finish_layer(data = data_ll, ...)
+    },
     required_aes = c(stat$required_aes, 'highlight')
   )
 }
@@ -55,8 +41,7 @@ ggproto_ll <- function(geom, LL) {
 #' However, geom_abline isn't.
 #' In addition, geom_smooth does not workds currently.
 #'
-#' @inheritParams function_ll
-#' @inheritParams ggproto_hl
+#' @inheritParams ggproto_ll
 #' @return function
 #' @examples
 #' library(ggplot2)
@@ -74,7 +59,8 @@ ggproto_ll <- function(geom, LL) {
 #'   gghl(geom_point)()
 #' @export
 gghl <- function(geom, LL = list(colour = NA)) {
-  function(...) {
+  .LL <- LL
+  function(..., LL = .LL) {
     purrr::pmap(
       list(stat = list(
         ggproto_ll(geom, LL),
