@@ -1,5 +1,4 @@
-#' wrapper function to extract method from existing Stat and assign data to be highlighted
-#'
+#' Return highlighted version of ggproto object a stat of geom_.
 #' @importFrom ggplot2 ggproto
 #' @importFrom purrr pmap
 #' @param geom geom_* functions (e.g., geom_point)
