@@ -9,7 +9,7 @@ gghl(geom, LL = list(colour = NA))
 \arguments{
 \item{geom}{geom_* functions (e.g., geom_point)}
 
-\item{LL}{list of aethentics of lowlight objects (e.g., list(colour = NA))}
+\item{LL}{aethentics for lowlights specified by list (e.g., list(colour = 'gray', alpha = '0.5'))}
 }
 \value{
 function
