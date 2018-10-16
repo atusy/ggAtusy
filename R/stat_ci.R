@@ -17,8 +17,10 @@ find_boundary <- function(data, bool, lim) {
   colSums(neighbors * rev(abs((lim - neighbors$x) / diff(neighbors$x))))
 }
 
-#' Stat which shows CI of density plot
 #' @importFrom ggplot2 ggproto
+ggproto <- ggplot2::ggproto
+
+#' Stat which shows CI of density plot
 #' @importFrom ggplot2 StatDensity
 #' @format NULL
 #' @usage NULL
