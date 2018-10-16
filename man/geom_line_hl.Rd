@@ -4,7 +4,7 @@
 \alias{geom_line_hl}
 \title{highlighted version of ggplot2::geom_line}
 \usage{
-geom_line_hl(...)
+geom_line_hl(..., LL = .LL)
 }
 \arguments{
 \item{...}{arguments passed to geom_point}
