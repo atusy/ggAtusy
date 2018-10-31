@@ -1,14 +1,15 @@
 Package: ggAtusy
 Type: Package
-Title: Add more geoms and stats for ggplot2
+Title: Extentions of ggplot2
 Version: 0.1.0
 Author: Atsushi Yasumoto
 Maintainer: Atsushi Yasumoto <atusy7+gh@gmail.com>
-Description: Provides variety of highlighted version of geoms, provides stat_err to draw both horizontal and vertical error bars.
+Description: Provides variety of highlighted version of geoms, stat_err to draw both horizontal and vertical error bars, and rapid printing of list of ggplot objects.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
 Imports: ggplot2,
-  purrr
+  purrr,
+  pforeach
 Remotes: hoxo-m/pforeach
