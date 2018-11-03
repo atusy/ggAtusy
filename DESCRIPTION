@@ -4,7 +4,7 @@ Title: Extentions of ggplot2
 Version: 0.1.0
 Author: Atsushi Yasumoto
 Maintainer: Atsushi Yasumoto <atusy7+gh@gmail.com>
-Description: Provides variety of highlighted version of geoms, stat_err to draw both horizontal and vertical error bars, and rapid printing of list of ggplot objects.
+Description: Provides highlighted version of geoms, additional stat_* functions, labeller functions, and rapid printing of list of ggplot objects.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
