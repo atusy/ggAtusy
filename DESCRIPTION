@@ -11,5 +11,6 @@ LazyData: true
 RoxygenNote: 6.1.0
 Imports: ggplot2,
   purrr,
-  pforeach
+  pforeach,
+  latex2exp
 Remotes: hoxo-m/pforeach
