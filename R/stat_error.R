@@ -1,10 +1,9 @@
 #' StatErr
-#' @importFrom ggplot2 ggproto
-#' @importFrom ggplot2 Stat
+#' @importFrom ggplot2 ggproto Stat
 #' @export
 StatErr <- ggproto(
   "StatErr",
-  ggplot2::Stat,
+  Stat,
   required_aes = c('xmin', 'x', 'xmax', 'ymin', 'y', 'ymax'),
   compute_group = function(data, scales) {
     #横長データを縦長にするイメージ
@@ -27,7 +26,6 @@ StatErr <- ggproto(
 #' @param inherit.aes TRUE
 #' @param ... other arguments passed to ggplot2::layer
 #' @importFrom ggplot2 layer
-#' @example
 #'
 #' @export
 stat_err <- function(

@@ -41,6 +41,7 @@ ggproto_ll <- function(geom, LL) {
 #' In addition, geom_smooth does not workds currently.
 #'
 #' @inheritParams ggproto_ll
+#' @importFrom purrr pmap
 #' @return function
 #' @examples
 #' library(ggplot2)
@@ -60,7 +61,7 @@ ggproto_ll <- function(geom, LL) {
 gghl <- function(geom, LL = list(colour = NA)) {
   .LL <- LL
   function(..., LL = .LL) {
-    purrr::pmap(
+    pmap(
       list(stat = list(
         ggproto_ll(geom, LL),
         ggproto_hl(geom)
@@ -72,12 +73,14 @@ gghl <- function(geom, LL = list(colour = NA)) {
 }
 #' highlighted version of ggplot2::geom_point
 #' @param ... arguments passed to geom_point
+#' @inheritParams ggproto_ll
 #' @importFrom ggplot2 geom_point
 #' @export
 geom_point_hl <- gghl(geom_point)
 #geom_point_hl <- function(...) gghl(geom_point)(...)
 #' highlighted version of ggplot2::geom_line
 #' @param ... arguments passed to geom_point
+#' @inheritParams ggproto_ll
 #' @importFrom ggplot2 geom_line
 #' @export
 geom_line_hl <- gghl(geom_line)
