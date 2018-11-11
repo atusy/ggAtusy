@@ -8,6 +8,8 @@ geom_point_hl(..., LL = .LL)
 }
 \arguments{
 \item{...}{arguments passed to geom_point}
+
+\item{LL}{aethentics for lowlights specified by list (e.g., list(colour = 'gray', alpha = '0.5'))}
 }
 \description{
 highlighted version of ggplot2::geom_point

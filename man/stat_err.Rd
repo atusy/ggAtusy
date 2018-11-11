@@ -30,6 +30,3 @@ stat_err(mapping = NULL, data = NULL, geom = "segment",
 stat_error
 A function to draw both vertical and horizontal
 }
-\examples{
-
-}
