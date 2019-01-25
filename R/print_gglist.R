@@ -1,20 +1,21 @@
 #' print list of ggplot objects
-#' @param gglist list of ggplot objects
-#' @param ... other arguments passed to pforeach
+#' @param x List of ggplot objects
+#' @param strategy See `strategy` in `...``
+#' @inheritDotParams future::plan
+#'
+#' @importFrom future plan multiprocess
+#' @importFrom furrr future_map
+#' @importFrom ggplot2 ggplot_build ggplot_gtable
+#' @importFrom grid grid.draw grid.newpage
 #' @importFrom purrr walk
-#' @importFrom pforeach pforeach
-#' @importFrom ggplot2 ggplot_build
-#' @importFrom ggplot2 ggplot_gtable
-#' @importFrom grid grid.newpage
-#' @importFrom grid grid.draw
-print_gglist <- function(gglist, ...) {
-  walk(
-    pforeach(gglist = gglist, ..., .combine = c)({ # 計算を並列
-      list(ggplot_gtable(ggplot_build(gglist)))
-    }),
-    function(gg) { # 順次出力
+print_gglist <- function(x, strategy = multiprocess, ...) {
+  current_plan <- plan()
+  plan(strategy, ...)
+  future_map(x, ~ ggplot_gtable(ggplot_build(.x))) %>%
+    walk(function(x) {
       grid.newpage()
-      grid.draw(gg)
-    }
-  )
+      grid.draw(x)
+    })
+  plan(current_plan)
+  invisible(x)
 }

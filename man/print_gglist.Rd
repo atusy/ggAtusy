@@ -4,12 +4,21 @@
 \alias{print_gglist}
 \title{print list of ggplot objects}
 \usage{
-print_gglist(gglist, ...)
+print_gglist(x, strategy = multiprocess, ...)
 }
 \arguments{
-\item{gglist}{list of ggplot objects}
+\item{x}{list of ggplot objects}
 
-\item{...}{other arguments passed to pforeach}
+\item{...}{Arguments passed on to \code{future::plan}
+\describe{
+  \item{strategy}{The evaluation function (or name of it) to use
+for resolving a future.  If NULL, then the current strategy is returned.}
+  \item{substitute}{If TRUE, the \code{strategy} expression is
+\code{substitute()}:d, otherwise not.}
+  \item{.call}{(internal) Used for recording the call to this function.}
+  \item{.cleanup}{(internal) Used to stop implicitly started clusters.}
+  \item{.init}{(internal) Used to initiate workers.}
+}}
 }
 \description{
 print list of ggplot objects
