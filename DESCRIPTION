@@ -13,6 +13,8 @@ Imports: ggplot2,
   purrr,
   future,
   furrr,
-  latex2exp
+  latex2exp,
+  magrittr,
+  plotly
 Remotes: 
   stefano-meschiari/latex2exp

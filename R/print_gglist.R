@@ -7,6 +7,7 @@
 #' @importFrom furrr future_map
 #' @importFrom ggplot2 ggplot_build ggplot_gtable
 #' @importFrom grid grid.draw grid.newpage
+#' @importFrom magrittr %>%
 #' @importFrom purrr walk
 print_gglist <- function(x, strategy = multiprocess, ...) {
   current_plan <- plan()

@@ -7,7 +7,9 @@
 print_gglist(x, strategy = multiprocess, ...)
 }
 \arguments{
-\item{x}{list of ggplot objects}
+\item{x}{List of ggplot objects}
+
+\item{strategy}{See `strategy` in `...``}
 
 \item{...}{Arguments passed on to \code{future::plan}
 \describe{
@@ -15,6 +17,8 @@ print_gglist(x, strategy = multiprocess, ...)
 for resolving a future.  If NULL, then the current strategy is returned.}
   \item{substitute}{If TRUE, the \code{strategy} expression is
 \code{substitute()}:d, otherwise not.}
+  \item{.skip}{(internal) If \code{TRUE}, then attempts to set a strategy
+that is the same as what is currently in use, will skipped.}
   \item{.call}{(internal) Used for recording the call to this function.}
   \item{.cleanup}{(internal) Used to stop implicitly started clusters.}
   \item{.init}{(internal) Used to initiate workers.}
