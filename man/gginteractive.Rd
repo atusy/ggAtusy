@@ -7,7 +7,7 @@
 gginteractive(interactive = TRUE, ...)
 }
 \arguments{
-\item{interactive}{Wheter to convert ggplot2 to plotly (default: `TRUE`).}
+\item{interactive}{Wheter to convert ggplot2 to plotly (default: \code{TRUE}).}
 
 \item{...}{Arguments passed on to \code{plotly::ggplotly}
 \describe{

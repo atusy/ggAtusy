@@ -9,7 +9,7 @@ print_gglist(x, strategy = multiprocess, ...)
 \arguments{
 \item{x}{List of ggplot objects}
 
-\item{strategy}{See `strategy` in `...``}
+\item{strategy}{See \code{strategy} in `...``}
 
 \item{...}{Arguments passed on to \code{future::plan}
 \describe{

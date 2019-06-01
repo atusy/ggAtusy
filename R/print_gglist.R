@@ -20,3 +20,6 @@ print_gglist <- function(x, strategy = multiprocess, ...) {
   plan(current_plan)
   invisible(x)
 }
+
+#' @export
+print.gglist <- print_gglist
